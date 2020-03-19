@@ -1,6 +1,6 @@
 GUICAT-package
 WINDOWS HASHCAT GUI
-by Ryan Freedman
+by freedmanry
 
 GUICAT is a python file using the Tkinter library
 To use GUICAT, just paste all files contained in this package into your hashcat-x.x.x directory. It is important that all the files be inside the same directory as hashcat64.exe or you will receive an error.

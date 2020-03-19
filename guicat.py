@@ -17,7 +17,7 @@ wordlistpath = ''
 
 # Main Config:
 window = Tk()
-window.title("Hashcat GPU HashCracker")
+window.title("GUICAT Hashcat GUI")
 window.configure(background="black")
 window.geometry("485x250+700+300")
 

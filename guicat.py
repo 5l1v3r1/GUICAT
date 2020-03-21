@@ -9,10 +9,13 @@ from os import path
 from shutil import copy
 
 #####
+# Global Variables
+rootdir = "./"
+hccapxpath = ""
+wordlistpath = ""
+
 # Functions:
-
 # Select .hccapx File Button:
-
 # Open file explorer, select .hccapx file, copy .hccapx file to root hashcat dir, then renames to selected.hccapx.
 # If selected.hccapx is already in the root dir, then it is deleted upon pressing the browse hccapx button.
 ########### THIS IS THE FUNCTION IN QUESTION, problem area marked below #############
@@ -28,6 +31,7 @@ def browsehccapx():
 
 # Select Wordlist Button - Open file explorer, select .dict file, copy .dict file to root hashcat dir, then renames to selected.dict.
 # If selected.dict is already in the root dir, then it is deleted upon pressing the browse wordlist button.
+########### SAME ISSUE ##############################################################
 def browsewordlists():
     if path.exists(".\selected.dict"):
         os.remove(".\selected.dict")
@@ -36,7 +40,7 @@ def browsewordlists():
     wordlistpath = filedialog.askopenfilename(initialdir=".\wordlists", title="Select wordlist .dict file",filetypes=((".dict files","*.dict"),("all files","*.*")))
     wordlistpath = shutil.copy(wordlistpath, rootdir)
     os.rename("{}".format(wordlistpath), ".\selected.dict")
-
+#####################################################################################
 
 # Start Hashcat Button - runs selected.hccapx and selected.dict in hashcat64.exe
 def clicksubmit():
@@ -49,11 +53,6 @@ def clickpotfile():
 # Exit Button - Exits GUI and CMD
 def clickexit():
     window.destroy()
-
-# Global Variables
-rootdir = "./"
-hccapxpath = ""
-wordlistpath = ""
 
 # Main Config:
 window = Tk()
@@ -76,9 +75,9 @@ Button(window, text="Browse", width=6, command=browsehccapx) .grid(row=2, column
 # The textvariable is set to the proper variable containing the path to the .hccapx file, however
 # when the browsehccapx() function is called, the blank entry is not updated.
 # Same issue with the same type of function but for variable wordlistpathtxt.
-###########################
 hccapxpathtxt = Entry(window, textvariable=hccapxpath, width=64, bg="white")
 hccapxpathtxt.grid(row=2, column=1, padx=3, sticky=E)
+###########################
 
 # R3 - Spacer 10
 
@@ -89,8 +88,10 @@ Label(window, text="Choose Wordlist:", bg="black", fg="white", font="none 12 bol
 Button(window, text="Browse", width=6, command=browsewordlists) .grid(row=5, column=1, sticky=W)
 
 # R5 - Text entry for wordlist file path (Change to display selected file path(figuring this out))
+####### SAME ISSUE #########
 wordlistpathtxt = Entry(window, width=64, bg="white")
 wordlistpathtxt.grid(row=5, column=1, padx=3, sticky=E)
+############################
 
 # R6 - Spacer 20
 

@@ -64,7 +64,7 @@ hccapxpath = StringVar()
 wordlistpath = StringVar()
 
 # R0 - Logo (get rid of background in .gif)
-logo = PhotoImage(file="guihashcatlogo.gif")
+logo = PhotoImage(file="logo\guihashcatlogo.gif")
 Label(window, image=logo, bg="black") .grid(row=0, column=1, sticky=N)
 
 # R1 - Label - Select .hccapx file from .\hccapx-files\

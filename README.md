@@ -1,30 +1,25 @@
 GUICAT - MINIMAL WINDOWS HASHCAT GUI
 by FreedmanRy
 
-GUICAT is a simple python file using the tkinter library
+GUICAT is a simple python file that uses the tkinter library. It is a minimalistic GUI that takes 1 .hccapx file (custom Hashcat format for WPA/WPA2 handshakes) and 1 .dict file (Dictionary wordlist file, 1 entry on each line), then runs them through Hashcat, a popular bruteforcing tool found here:
 
-To use GUICAT, just paste all files contained in this package into your hashcat-x.x.x directory. It is important that all the files be inside the same directory as hashcat64.exe or you will receive an error.
+https://github.com/hashcat/hashcat
 
-NOTE:
-GUICAT has python dependencies that will be available as a setup file as this program grows
+To use GUICAT, just paste all files contained in this package into your hashcat-x.x.x directory. 
+It is important that all the files be inside the same directory as hashcat64.exe or you will receive an error.
 
-Since GUICAT is designed for Windows use, you may double click the GUICAT.bat file to begin the program.
-GUICAT.bat is a batch file that can be double-clicked in file explorer to run guicat.py without CMD or PowerShell.
+place your .hccapx files in .\hashcat-x.x.x\hccapxfiles\
+place your wordlists in .\hashcat-x.x.x\wordlists\
 
-GUICAT takes 2 inputs:
-  1 .hccapx file from ./hccapxfiles/
-  1 wordlist from ./wordlists/
-Add your files to these directories for use.
-(.cap files can be converted to .hccapx with hashcat-utils or at https://hashcat.net/cap2hccapx/)
+TIP: .cap files can be converted to .hccapx with hashcat-utils or at https://hashcat.net/cap2hccapx/
 
-Clicking 'BEGIN CRACKING' will run Hashcat64.exe in CMD using your GPU(s) and selected file paths.
+GUICAT.bat is a batch file that can be double-clicked in file explorer to run guicat.py without using the command line. You may also make a shortcut of this file and place it on your desktop for easy access.
 
-Clicking 'Cracked Hashes' will open hashcat.potfile in notepad, containing all successfully cracked hashes
-  with no duplicates.
+Click 'BEGIN CRACKING' to run Hashcat64.exe in CMD using the files you have selected. 
+Hashcat will automatically utilize your GPUs for cracking speed.
 
-You may create a Desktop Shortcut linked to this batch file, as long as the batch file remains in the
-root hashcat directory. Right-click GUICAT.bat and click "Create Shortcut".
+Click 'Cracked Hashes' to open hashcat.potfile in notepad, which contains all successfully cracked hashes with no duplicates.
 
-Any comments, concerns, or reccomendations may be e-mailed to ryanfreedman.dev@gmail.com
+Any comments, concerns, or recommendations may be e-mailed to ryanfreedman.dev@gmail.com
 
 Enjoy!

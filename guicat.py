@@ -48,8 +48,12 @@ def clickpotfile():
 
 # Exit Button - Removes selected.hccapx and selected.dict and exits GUI/CMD
 def clickexit():
-    os.remove(".\selected.hccapx")
-    os.remove(".\selected.dict")
+    if os.path.isfile(".\selected.hccapx"):
+        os.remove(".\selected.hccapx")
+    elif os.path.isfile(".\selected.dict"):
+        os.remove(".\selected.dict")
+    else:
+        pass
     window.destroy()
 
 # Main Config:

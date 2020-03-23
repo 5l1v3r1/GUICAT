@@ -17,6 +17,7 @@ GUICAT.bat is a batch file that can be double-clicked in file explorer to run gu
 
 Click 'BEGIN CRACKING' to run Hashcat64.exe in CMD using the files you have selected. 
 Hashcat will automatically utilize your GPUs for cracking speed.
+NOTE: I WILL NOT BE HELD ACCOUNTABLE FOR ANY MALICIOUS ACTIONS TAKEN WHILE USING THIS TOOL. USE AT YOUR OWN RISK.
 
 Click 'Cracked Hashes' to open hashcat.potfile in notepad, which contains all successfully cracked hashes with no duplicates.
 

@@ -50,7 +50,9 @@ def clickpotfile():
 def clickexit():
     if os.path.isfile(".\selected.hccapx"):
         os.remove(".\selected.hccapx")
-    elif os.path.isfile(".\selected.dict"):
+    else:
+        pass
+    if os.path.isfile(".\selected.dict"):
         os.remove(".\selected.dict")
     else:
         pass

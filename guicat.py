@@ -8,39 +8,35 @@ from tkinter import filedialog
 from os import path
 from shutil import copy
 
-#####
-# Global Variables
-rootdir = "./"
-hccapxpath = ""
-wordlistpath = ""
 
-# Functions:
+
+### Functions ###
+
 # Select .hccapx File Button:
 # Open file explorer, select .hccapx file, copy .hccapx file to root hashcat dir, then renames to selected.hccapx.
 # If selected.hccapx is already in the root dir, then it is deleted upon pressing the browse hccapx button.
-########### THIS IS THE FUNCTION IN QUESTION, problem area marked below #############
 def browsehccapx():
     if path.exists(".\selected.hccapx"):
         os.remove(".\selected.hccapx")
     else:
         pass
-    hccapxpath = filedialog.askopenfilename(initialdir=".\hccapxfiles", title="Select handshake .hccapx file",filetypes=((".hccapx files","*.hccapx"),("all files","*.*")))
-    hccapxpath = shutil.copy(hccapxpath, rootdir)
-    os.rename("{}".format(hccapxpath), ".\selected.hccapx")
-#####################################################################################
+    fullhccapxpath = filedialog.askopenfilename(initialdir=".\hccapxfiles", title="Select handshake .hccapx file",filetypes=((".hccapx files","*.hccapx"),("all files","*.*")))
+    fullhccapxpath = shutil.copy(fullhccapxpath, rootdir)
+    hccapxpath.set(fullhccapxpath)
+    os.rename("{}".format(fullhccapxpath), ".\selected.hccapx")
+
 
 # Select Wordlist Button - Open file explorer, select .dict file, copy .dict file to root hashcat dir, then renames to selected.dict.
 # If selected.dict is already in the root dir, then it is deleted upon pressing the browse wordlist button.
-########### SAME ISSUE ##############################################################
 def browsewordlists():
     if path.exists(".\selected.dict"):
         os.remove(".\selected.dict")
     else:
         pass
-    wordlistpath = filedialog.askopenfilename(initialdir=".\wordlists", title="Select wordlist .dict file",filetypes=((".dict files","*.dict"),("all files","*.*")))
-    wordlistpath = shutil.copy(wordlistpath, rootdir)
-    os.rename("{}".format(wordlistpath), ".\selected.dict")
-#####################################################################################
+    fullwordlistpath = filedialog.askopenfilename(initialdir=".\wordlists", title="Select wordlist .dict file",filetypes=((".dict files","*.dict"),("all files","*.*")))
+    fullwordlistpath = shutil.copy(fullwordlistpath, rootdir)
+    wordlistpath.set(fullwordlistpath)
+    os.rename("{}".format(fullwordlistpath), ".\selected.dict")
 
 # Start Hashcat Button - runs selected.hccapx and selected.dict in hashcat64.exe
 def clicksubmit():
@@ -50,8 +46,10 @@ def clicksubmit():
 def clickpotfile():
     os.system("notepad.exe hashcat.potfile")
 
-# Exit Button - Exits GUI and CMD
+# Exit Button - Removes selected.hccapx and selected.dict and exits GUI/CMD
 def clickexit():
+    os.remove(".\selected.hccapx")
+    os.remove(".\selected.dict")
     window.destroy()
 
 # Main Config:
@@ -59,6 +57,11 @@ window = Tk()
 window.title("GUICAT - Minimal Hashcat GUI")
 window.configure(background="black")
 window.geometry("485x250+700+300")
+
+# Global Variables
+rootdir = "./"
+hccapxpath = StringVar()
+wordlistpath = StringVar()
 
 # R0 - Logo (get rid of background in .gif)
 logo = PhotoImage(file="guihashcatlogo.gif")
@@ -70,14 +73,9 @@ Label(window, text="Choose .hccapx File:", bg="black", fg="white", font="none 12
 # R2 - Search Directories Button - Opens file explorer in .\hccapxfiles, deletes previous .hccapx file, saves output to variable and renames the file within hashcat directory
 Button(window, text="Browse", width=6, command=browsehccapx) .grid(row=2, column=1, sticky=W)
 
-# R2 - Text entry for .hccapx file path (Change to display selected file path(figuring this out))
-######## THE ISSUE ########
-# The textvariable is set to the proper variable containing the path to the .hccapx file, however
-# when the browsehccapx() function is called, the blank entry is not updated.
-# Same issue with the same type of function but for variable wordlistpathtxt.
+# R2 - Entry for .hccapx file path
 hccapxpathtxt = Entry(window, textvariable=hccapxpath, width=64, bg="white")
 hccapxpathtxt.grid(row=2, column=1, padx=3, sticky=E)
-###########################
 
 # R3 - Spacer 10
 
@@ -87,11 +85,9 @@ Label(window, text="Choose Wordlist:", bg="black", fg="white", font="none 12 bol
 # R5 - Search Directories Button - Opens file explorer in ./wordlists, deletes previous wordlist, saves output to variable, and renames file within hashcat directory
 Button(window, text="Browse", width=6, command=browsewordlists) .grid(row=5, column=1, sticky=W)
 
-# R5 - Text entry for wordlist file path (Change to display selected file path(figuring this out))
-####### SAME ISSUE #########
-wordlistpathtxt = Entry(window, width=64, bg="white")
+# R5 - Entry for wordlist file path
+wordlistpathtxt = Entry(window, textvariable=wordlistpath, width=64, bg="white")
 wordlistpathtxt.grid(row=5, column=1, padx=3, sticky=E)
-############################
 
 # R6 - Spacer 20
 
